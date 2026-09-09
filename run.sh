@@ -5,5 +5,7 @@ export DISPLAY=:0.0
 export QT_XCB_FORCE_SOFTWARE_OPENGL=1
 export QT_OPENGL=software
 export QT_QPA_PLATFORM=xcb
+# 抑制 BH1726 驱动饱和告警在 console 刷屏 (dmesg 记录不受影响)
+echo 4 > /proc/sys/kernel/printk 2>/dev/null
 cd /mnt/nfs/agri || exit 1
 exec ./smart_agri "$@"
