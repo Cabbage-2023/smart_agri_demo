@@ -10,7 +10,14 @@ export QT_QPA_PLATFORM=xcb
 echo 4 > /proc/sys/kernel/printk 2>/dev/null
 # 自动定位脚本所在目录, 复制到哪个目录都能直接跑
 cd "$(dirname "$0")" || exit 1
-if [ -x ./deploy/smart_agri ]; then
+# ZIP 下载 / Windows 传输会丢失可执行位, 运行前补 chmod (对已可执行的无害)
+if [ -f ./deploy/smart_agri ]; then
+    chmod +x ./deploy/smart_agri
     exec ./deploy/smart_agri "$@"
 fi
-exec ./smart_agri "$@"
+if [ -f ./smart_agri ]; then
+    chmod +x ./smart_agri
+    exec ./smart_agri "$@"
+fi
+echo "错误: 找不到 smart_agri (应位于 deploy/ 目录或与 run.sh 同目录)" >&2
+exit 1
