@@ -9,7 +9,7 @@
  *   SMARTAGRI_AHT_I2C     AHT20 备用裸 I2C 总线 (默认 /dev/i2c-0)
  *   SMARTAGRI_PWM_CHIP    风扇 PWM 芯片目录 (默认 /sys/class/pwm/pwmchip6)
  *   SMARTAGRI_PWM_INVERT=1  极性取反 (部分风扇板低电平导通)
- *   SMARTAGRI_LOG_DIR     CSV 日志目录 (默认 /mnt/nfs/agri/log)
+ *   SMARTAGRI_LOG_DIR     CSV 日志目录 (默认 ./log, 即程序所在目录下的 log/)
  *   SMARTAGRI_INTERVAL_MS 采样周期 (默认 1000)
  */
 
@@ -52,7 +52,7 @@ inline QString ledBrightness(int n) { return QString("/sys/class/leds/led%1/brig
 inline QString ledTrigger(int n)    { return QString("/sys/class/leds/led%1/trigger").arg(n); }
 
 /* ---------- CSV 日志 ---------- */
-inline QString logDir()      { return env("SMARTAGRI_LOG_DIR", "/mnt/nfs/agri/log"); }
+inline QString logDir()      { return env("SMARTAGRI_LOG_DIR", "log"); }   /* 相对目录, 放哪都能跑 */
 inline QString logFilePath() { return logDir() + "/smart_agri.csv"; }
 
 } // namespace Hw
