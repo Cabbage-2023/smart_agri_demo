@@ -6,6 +6,8 @@ export DISPLAY=:0.0
 export QT_XCB_FORCE_SOFTWARE_OPENGL=1
 export QT_OPENGL=software
 export QT_QPA_PLATFORM=xcb
+# 出厂镜像 /etc/localtime 链接损坏导致全线 UTC, 显式固定北京时间(中国无夏令时, 对正常镜像也无害)
+export TZ=CST-8
 # 抑制 BH1726 驱动饱和告警在 console 刷屏 (dmesg 记录不受影响)
 echo 4 > /proc/sys/kernel/printk 2>/dev/null
 # 自动定位脚本所在目录, 复制到哪个目录都能直接跑
