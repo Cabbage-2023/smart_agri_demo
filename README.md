@@ -52,7 +52,7 @@ deploy/smart_agri      # 预编译好的 ARM 程序(2.6 MB)
 3. Windows 打开 cmd,进入解压后的文件夹,执行:
 
 ```bat
-pscp -scp -pw "" -r run.sh deploy root@板子的IP:/root/
+pscp -scp -pw "" -r run.sh deploy root@板子的IP:/home/root/
 ```
 
 - 没有 pscp?飞凌资料包里 PuTTY 工具目录有现成的;或用 WinSCP(新建会话时
@@ -69,13 +69,14 @@ pscp -scp -pw "" -r run.sh deploy root@板子的IP:/root/
 串口终端里执行:
 
 ```sh
-sh /root/run.sh
+sh /home/root/run.sh
 ```
 
 看到全屏深色界面、数值每秒跳动就成功了。界面右上角关闭即退出。
 
-> 文件放板子上**任意目录**都行(run.sh 会自动定位自身),这里放 `/root` 只是最省事:
-> SCP 协议不会自动创建远端目录,所以要选一个**已经存在**的目录放。
+> 文件放板子上**任意目录**都行(run.sh 会自动定位自身)。`/home/root` 是 root
+> 用户的家目录,出厂镜像固定存在,最省事;SCP 协议**不会自动创建远端目录**,
+> 所以换成别的目录时,必须选一个已经存在的(或先 `mkdir`)。
 
 > 需要板子先有 X 图形桌面(出厂镜像开机默认已启动 matchbox 桌面)。
 > 如果 `DISPLAY` 报错,说明桌面没起,先启动桌面再运行。
