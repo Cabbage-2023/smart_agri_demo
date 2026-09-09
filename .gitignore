@@ -1,0 +1,10 @@
+# qmake / build artifacts
+Makefile
+Makefile.*
+*.o
+*.obj
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+smart_agri
+*.log
